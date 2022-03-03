@@ -63,7 +63,7 @@ node* insertionAtParticularPosition(node*head, node* ptr,int pos)
    }
    else
    {
-       cout<<"\nentered position is invalid"<<"\ninsertion at last is done"<<endl;
+       cout<<"\nentered position is invalid \ninsertion at last is done"<<endl;
        return insertionAtLast( head, ptr);
    }
      
@@ -78,7 +78,7 @@ node* insertionAfterParticularElement(node* head, node* ptr, int key)
     }
     if(!p)
     {
-       cout<<"\nelement is not present in linked list"<<"\n insertion at last is done.";
+       cout<<"\nelement is not present in linked list \n insertion at last is done.";
         return insertionAtLast(head, ptr);
     }
     else
@@ -92,17 +92,17 @@ node* insertionAfterParticularElement(node* head, node* ptr, int key)
 node* insertionBeforeParticularElement(node* head, node* ptr, int key)
 {
     node* p =head;
-    if(p->data==key)
+    if(p && p->data==key)
     {
         return insertionAtStart(head,ptr);
     }
-    while(p && p->next->data!=key)
+    while(p && p->next && p->next->data!=key)
     {
         p=p->next;
     }
-    if(!p)
+    if(!p || !p->next)
     {
-        cout<<"\n element is not present in linked list" << "\n insertion at last is done.";
+        cout<<"\n element is not present in linked list \n insertion at last is done.";
         return insertionAtLast(head, ptr);
     }
     else
@@ -121,13 +121,13 @@ int main()
     while(nextElement==1)
     {
         int d;
-        cout<<"enter data: ";
+        cout<<"enter data: \n";
         cin>>d;
         node* ptr = new node();
         ptr -> data = d;
 
     int type;
-    cout<< "\n 1 for insertion at start. \n 2 for insertion at last. \n 3 for insertion at desired position. \n 4 for insertion after elements. \n5 for insertion before elements.";
+    cout<< "\n 1 for insertion at start. \n 2 for insertion at last. \n 3 for insertion at desired position. \n 4 for insertion after elements. \n 5 for insertion before elements.\n";
     cin>>type;
 
         switch(type)
@@ -157,16 +157,17 @@ int main()
             cout<<"\nEnter the element before which you want to insert the data: ";
             cin>>key2;
             head = insertionBeforeParticularElement(head, ptr, key2);
+            printLinkedList(head);
             break;
         default: 
               cout<<"\n choice is incorrect. Enter a valid choice."<<endl;
               break;
     }
-    cout<<"Data in linked list: ";
+    cout<<"\nData in linked list: ";
     printLinkedList(head);
         cout<<"\nTo enter more data press 1 : ";
         cin>>nextElement;
     }
- cout<<"Data in linked list: ";
+ cout<<"\nData in linked list: ";
  printLinkedList(head);
 }
